@@ -1,0 +1,17 @@
+node_modules
+.DS_Store*
+~*
+*~
+.idea/
+coverage
+.classpath
+.eclipse
+.vscode
+*.iml
+*.che
+.nyc_output
+lib/*
+logs/*
+start.sh
+vuepress-output
+

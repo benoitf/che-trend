@@ -1,0 +1,79 @@
+{
+  "name": "che-trend",
+  "version": "0.0.0",
+  "author": "Florent Benoit",
+  "description": "Eclipse Che Trend",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "@octokit/graphql": "^4.5.0",
+    "@octokit/rest": "^17.6.0",
+    "@octokit/types": "^2.13.0",
+    "@types/fs-extra": "^8.1.0",
+    "fs-extra": "^9.0.0",
+    "handlebars": "^4.7.6",
+    "inversify": "^5.0.1",
+    "moment": "^2.25.3",
+    "reflect-metadata": "^0.1.13"
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.2",
+    "@types/reflect-metadata": "^0.1.0",
+    "@typescript-eslint/eslint-plugin": "^2.33.0",
+    "@typescript-eslint/parser": "^2.33.0",
+    "cpx": "^1.5.0",
+    "eslint": "^7.0.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jest": "^23.11.0",
+    "import-sort-style-eslint": "^6.0.0",
+    "jest": "^26.0.1",
+    "prettier": "^2.0.5",
+    "prettier-plugin-import-sort": "^0.0.4",
+    "ts-jest": "^26.1.0",
+    "ts-mockito": "^2.5.0",
+    "ts-node": "^8.10.1",
+    "tslint": "^6.1.2",
+    "typescript": "^3.9.0",
+    "vuepress": "^1.5.0"
+  },
+  "scripts": {
+    "build": "yarn run format-code && yarn run compile && yarn run lint",
+    "compile": "tsc --project . && cpx './src/template/*.md' './lib/template' --clean && cpx './src/vuepress/eclipseche.svg' './lib/vuepress' --clean",
+    "format": "prettier --write **/*.ts **/**/*.ts package.json",
+    "format-check": "prettier --check **/*.ts **/**/*.ts package.json",
+    "lint": "eslint . --ext .ts",
+    "test": "jest"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": [
+      "src/**/*.ts"
+    ],
+    "coverageDirectory": "./coverage",
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "modulePathIgnorePatterns": [
+      "<rootDir>/dist"
+    ],
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js",
+      "jsx",
+      "json"
+    ]
+  },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
+  "importSort": {
+    ".ts": {
+      "style": "eslint",
+      "parser": "typescript"
+    }
+  }
+}
