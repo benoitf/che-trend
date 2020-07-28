@@ -41,7 +41,7 @@ title: Week {{ weekNumber }}
 {{/if}}
 
 {{#if newIssuesExternalContributions}}
-#### External Contributions - new issues opened by non-Che team ({{ percentNewIssuesFromPreviousWeekExternal }})
+#### Community Contributions - new issues opened by non-Red Hat Che team ({{ percentNewIssuesFromPreviousWeekExternal }})
 
 {{#each newIssuesExternalContributions}}
  - [[{{this.authorLogin}}]({{this.authorUrl}})] [{{ this.title}}]({{this.url}})
@@ -49,7 +49,7 @@ title: Week {{ weekNumber }}
 {{/if}}
 
 {{#if newPrsExternalContributions}}
-#### External Contributions - new PRs opened by non-Che team ({{ percentNewPrsFromPreviousWeekExternal }})
+#### Community Contributions - new PRs opened by non-Red Hat Che team ({{ percentNewPrsFromPreviousWeekExternal }})
 
 {{#each newPrsExternalContributions}}
 - [[{{this.authorLogin}}]({{this.authorUrl}})] [{{this.repoOwner}}/{{this.repoName}}]: [{{ this.title}}]({{this.url}})
@@ -57,7 +57,7 @@ title: Week {{ weekNumber }}
 {{/if}}
 
 {{#if mergedPrsExternalContributions}}
-#### External Contributions - merged PRs opened by non-Che team ({{ percentMergedPrsFromPreviousWeekExternal }})
+#### Community Contributions - merged PRs opened by non-Red Hat Che team ({{ percentMergedPrsFromPreviousWeekExternal }})
 
 {{#each mergedPrsExternalContributions }}
 - [[{{this.authorLogin}}]({{this.authorUrl}})] [{{this.repoOwner}}/{{this.repoName}}]: [{{ this.title}}]({{this.url}})
