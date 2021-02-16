@@ -8,8 +8,8 @@ node lib/entrypoint.js
 cd vuepress-output
 ../node_modules/.bin/vuepress build
 cd .vuepress/dist
-git config --global user.email "fbenoit@redhat.com"
-git config --global user.name "Florent Benoit"
+git config --global user.email "fbenoit+che-trend@redhat.com"
+git config --global user.name "Che Trend"
 git init .
 git checkout --orphan gh-pages
 git add *
