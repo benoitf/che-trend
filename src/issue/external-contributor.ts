@@ -31,7 +31,7 @@ export class ExternalContributor {
     this.coreComitters.push('tolusha');
     this.coreComitters.push('mshaposhnik');
     this.coreComitters.push('vitaliy-guliy');
-    this.coreComitters.push('vzhukovskii');
+    this.coreComitters.push('vzhukovs');
     this.coreComitters.push('vkuznyetsov');
     this.coreComitters.push('artaleks9');
     this.coreComitters.push('mkuznyetsov');
