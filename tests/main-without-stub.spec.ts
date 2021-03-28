@@ -3,14 +3,12 @@ import 'reflect-metadata';
 
 import { Main } from '../src/main';
 
-
 describe('Test Main without stubs', () => {
-
   const originalConsoleError = console.error;
   const mockedConsoleError = jest.fn();
 
-  beforeEach(() => (console.error = mockedConsoleError))
-  afterEach(() => (console.error = originalConsoleError))
+  beforeEach(() => (console.error = mockedConsoleError));
+  afterEach(() => (console.error = originalConsoleError));
 
   test('test missing token', async () => {
     const main = new Main();
@@ -18,5 +16,4 @@ describe('Test Main without stubs', () => {
     expect(mockedConsoleError).toBeCalled();
     expect(returnCode).toBeFalsy();
   });
-
 });

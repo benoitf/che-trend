@@ -1,15 +1,15 @@
 import 'reflect-metadata';
-import { InversifyBinding } from '../src/inversify-binding';
-import { Container } from 'inversify';
-import { Analysis } from '../src/analysis';
-import { VuePressGenerator } from '../src/vuepress/vuepress-generator';
-import { TemplateGenerator } from '../src/template/template-generator';
-import { ComputeStatistics } from '../src/process/compute-statistics';
-import { GithubImport } from '../src/process/github-import';
-import { GenerateReport } from '../src/generate-report';
-import { IssueDescriptionBuilder } from '../src/issue/issue-description-builder';
-import { ExternalContributor } from '../src/issue/external-contributor';
 
+import { Analysis } from '../src/analysis';
+import { ComputeStatistics } from '../src/process/compute-statistics';
+import { Container } from 'inversify';
+import { ExternalContributor } from '../src/issue/external-contributor';
+import { GenerateReport } from '../src/generate-report';
+import { GithubImport } from '../src/process/github-import';
+import { InversifyBinding } from '../src/inversify-binding';
+import { IssueDescriptionBuilder } from '../src/issue/issue-description-builder';
+import { TemplateGenerator } from '../src/template/template-generator';
+import { VuePressGenerator } from '../src/vuepress/vuepress-generator';
 
 describe('Test InversifyBinding', () => {
   test('test bindings', async () => {
