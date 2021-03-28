@@ -23,7 +23,8 @@ export class Analysis {
   async analyze(startDate: Date): Promise<void> {
     const issueDescriptions: IssueDescription[] = await this.githubImport.import(startDate);
     const statistics = await this.computeStatistics.compute(startDate, issueDescriptions);
-    const reports = await this.generateReport.generateWeekReports(statistics);
-    await this.vuePressGenerator.generate(reports);
+    const weekReports = await this.generateReport.generateWeekReports(statistics);
+    const roadmapReport = await this.generateReport.generateRoadmapReport(statistics);
+    await this.vuePressGenerator.generate(weekReports, roadmapReport);
   }
 }

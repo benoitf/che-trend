@@ -5,6 +5,7 @@ import { IssuesByArea } from '../api/issue-by-area';
 import { PerDayStatistics } from '../api/per-day-statistics';
 import { PerWeekStatistics } from '../api/per-week-statistics';
 import { PullRequestDescription } from '../api/pull-request-description';
+import { Roadmap } from '../api/roadmap';
 import { SortedArea } from '../api/sorted-area';
 import { Statistics } from '../api/statistics';
 import { injectable } from 'inversify';
@@ -17,10 +18,13 @@ export class ComputeStatistics {
 
   private analyzed: Map<string, boolean>;
 
+  private roadmap: Roadmap;
+
   constructor() {
     this.issuesAndPRsstatistics = new Map();
     this.perWeekIssuesAndPRsstatistics = new Map();
     this.analyzed = new Map();
+    this.roadmap = this.initRoadmap();
   }
 
   protected initWeek(weekInfo: string, previousWeekInfo: string): PerWeekStatistics {
@@ -100,6 +104,14 @@ export class ComputeStatistics {
 
       newIssuesAreas: new Map<string, number>(),
       closeIssuesAreas: new Map<string, number>(),
+    };
+  }
+
+  protected initRoadmap(): Roadmap {
+    return {
+      shortTermRoadmapIssues: [],
+      midTermRoadmapIssues: [],
+      longTermRoadmapIssues: [],
     };
   }
 
@@ -187,6 +199,18 @@ export class ComputeStatistics {
 
     if (issueDescription.labels.includes('new&noteworthy')) {
       week.newIssuesNoteworthy.push(issueDescription);
+    }
+
+    if (issueDescription.labels.includes('roadmap/3-months')) {
+      this.roadmap.shortTermRoadmapIssues.push(issueDescription);
+    }
+
+    if (issueDescription.labels.includes('roadmap/6-months')) {
+      this.roadmap.midTermRoadmapIssues.push(issueDescription);
+    }
+
+    if (issueDescription.labels.includes('roadmap/1-year')) {
+      this.roadmap.longTermRoadmapIssues.push(issueDescription);
     }
   }
 
@@ -456,6 +480,7 @@ export class ComputeStatistics {
     return {
       weeks: this.perWeekIssuesAndPRsstatistics,
       days: this.issuesAndPRsstatistics,
+      roadmap: this.roadmap,
     };
   }
 }

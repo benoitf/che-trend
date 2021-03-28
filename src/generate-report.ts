@@ -10,6 +10,18 @@ export class GenerateReport {
   @inject(TemplateGenerator)
   private templateGenerator: TemplateGenerator;
 
+  public async generateRoadmapReport(statistics: Statistics): Promise<Report> {
+    const roadmap = statistics.roadmap;
+
+    const env = {
+      roadmap,
+    };
+
+    const result = await this.templateGenerator.renderRoadmap(env);
+    const report = { name: 'Roadmap', content: result, weekYear: '', weekNumber: '' };
+    return report;
+  }
+
   public async generateWeekReports(statistics: Statistics): Promise<Report[]> {
     const reports: Report[] = [];
     const perWeekIssuesAndPRsstatistics = statistics.weeks;
@@ -27,7 +39,7 @@ export class GenerateReport {
           weekYear,
         };
 
-        const result = await this.templateGenerator.render(env);
+        const result = await this.templateGenerator.renderWeekReport(env);
 
         const report = { name: weekInfo, content: result, weekYear, weekNumber };
         reports.push(report);
