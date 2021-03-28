@@ -89,9 +89,10 @@ footer: Copyright © 2020 Florent Benoit / updated ${updated}
         nav: [
           { text: 'Home', link: '/' },
           { text: 'Stats', link: '/2020/' },
+          { text: 'Roadmap', link: '/roadmap' },
           { text: 'Eclipse Che website', link: 'https://www.eclipse.org/che' },
         ],
-        sidebar: [],
+        sidebar: [{ title: 'Roadmap', path: '/roadmap', collapsable: false }],
       },
     };
 
@@ -120,14 +121,14 @@ footer: Copyright © 2020 Florent Benoit / updated ${updated}
     await fs.writeFile(vuepressConfigFile, content, { encoding: 'utf8' });
   }
 
-  public async generate(reports: Report[]): Promise<void> {
+  public async generate(weekReports: Report[], roadmapReport: Report): Promise<void> {
     const vuepressRootDir = path.resolve(__dirname, '..', '..', 'vuepress-output');
     if (await fs.pathExists(vuepressRootDir)) {
       await fs.remove(vuepressRootDir);
     }
     await fs.ensureDir(vuepressRootDir);
 
-    for await (const report of reports) {
+    for await (const report of weekReports) {
       // year folder
       const yearFolder = path.resolve(vuepressRootDir, report.weekYear);
       await fs.ensureDir(yearFolder);
@@ -135,13 +136,16 @@ footer: Copyright © 2020 Florent Benoit / updated ${updated}
       await fs.writeFile(file, report.content, { encoding: 'utf8' });
     }
 
+    const file = path.resolve(vuepressRootDir, `roadmap.md`);
+    await fs.writeFile(file, roadmapReport.content, { encoding: 'utf8' });
+
     const vuePressHiddenFolder = path.resolve(vuepressRootDir, '.vuepress');
     await fs.ensureDir(vuePressHiddenFolder);
     const vuepressConfigFile = path.resolve(vuePressHiddenFolder, 'config.js');
-    this.generateConfigFile(vuepressConfigFile, reports);
+    this.generateConfigFile(vuepressConfigFile, weekReports);
 
     // generate READMEs
-    await this.generateReadme(vuepressRootDir, reports);
+    await this.generateReadme(vuepressRootDir, weekReports);
 
     // generate style
     await this.generateStyle(vuePressHiddenFolder);
