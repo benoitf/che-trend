@@ -62,8 +62,8 @@ export class VuePressGenerator {
 home: true
 heroImage: images/eclipseche.svg
 actionText: View Stats →
-actionLink: /2020/
-footer: Copyright © 2020 Florent Benoit / updated ${updated}
+actionLink: /2021/
+footer: Copyright © 2021 Florent Benoit / updated ${updated}
 ---`;
     const vuepressReadmeFile = path.resolve(vuepressRootDir, 'README.md');
     await fs.writeFile(vuepressReadmeFile, content, { encoding: 'utf8' });
@@ -88,7 +88,7 @@ footer: Copyright © 2020 Florent Benoit / updated ${updated}
       themeConfig: {
         nav: [
           { text: 'Home', link: '/' },
-          { text: 'Stats', link: '/2020/' },
+          { text: 'Stats', link: '/2021/' },
           { text: 'Roadmap', link: '/roadmap' },
           { text: 'Eclipse Che website', link: 'https://www.eclipse.org/che' },
         ],
