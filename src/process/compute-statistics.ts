@@ -125,14 +125,14 @@ export class ComputeStatistics {
   }
 
   protected getWeekOrCreate(date: string): PerWeekStatistics {
-    // transform date into week-info like 2020-2 for second week of 2020
+    // transform date into week-info like 2020-02 for second week of 2020
     const momentDate = moment(date);
-    const weekNumber = momentDate.isoWeeks();
+    const weekNumber = momentDate.format('WW'); // 2 digits
     const year = momentDate.year();
     const weekInfo = `${year}-${weekNumber}`;
 
     const previousMomentDate = momentDate.subtract(7, 'days');
-    const previousWeekNumber = previousMomentDate.isoWeeks();
+    const previousWeekNumber = previousMomentDate.format('WW');
     const previousYear = momentDate.year();
     const previousWeekInfo = `${previousYear}-${previousWeekNumber}`;
 
